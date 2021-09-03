@@ -1,6 +1,6 @@
 var tasks = {};
 
-var createTask = function(taskText, taskDate, taskList) {
+var createTask = function (taskText, taskDate, taskList) {
   // create elements that make up a task item
   var taskLi = $("<li>").addClass("list-group-item");
   var taskSpan = $("<span>")
@@ -18,7 +18,7 @@ var createTask = function(taskText, taskDate, taskList) {
   $("#list-" + taskList).append(taskLi);
 };
 
-var loadTasks = function() {
+var loadTasks = function () {
   tasks = JSON.parse(localStorage.getItem("tasks"));
 
   // if nothing in localStorage, create a new object to track all task status arrays
@@ -32,19 +32,19 @@ var loadTasks = function() {
   }
 
   // loop over object properties
-  $.each(tasks, function(list, arr) {
+  $.each(tasks, function (list, arr) {
     // then loop over sub-array
-    arr.forEach(function(task) {
+    arr.forEach(function (task) {
       createTask(task.text, task.date, list);
     });
   });
 };
 
-var saveTasks = function() {
+var saveTasks = function () {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 };
 
-$(".list-group").on("click", "p", function() {
+$(".list-group").on("click", "p", function () {
   var text = $(this).text().trim();
   var textInput = $("<textarea>").addClass("form-control").val(text);
   $(this).replaceWith(textInput);
@@ -52,7 +52,7 @@ $(".list-group").on("click", "p", function() {
   console.log(text);
 });
 
-$(".list-group").on("blur", "textarea", function() {
+$(".list-group").on("blur", "textarea", function () {
   // get the textareas current value/text
   var text = $(this).val().trim();
 
@@ -76,19 +76,19 @@ $(".list-group").on("blur", "textarea", function() {
 
 
 // modal was triggered
-$("#task-form-modal").on("show.bs.modal", function() {
+$("#task-form-modal").on("show.bs.modal", function () {
   // clear values
   $("#modalTaskDescription, #modalDueDate").val("");
 });
 
 // modal is fully visible
-$("#task-form-modal").on("shown.bs.modal", function() {
+$("#task-form-modal").on("shown.bs.modal", function () {
   // highlight textarea
   $("#modalTaskDescription").trigger("focus");
 });
 
 // due date was clicked
-$(".list-group").on("click", "span", function() {
+$(".list-group").on("click", "span", function () {
   // get current text
   var date = $(this).text().trim();
 
@@ -103,7 +103,7 @@ $(".list-group").on("click", "span", function() {
 });
 
 // value of the due date was changed
-$(".list-group").on("blur", "input[type='text']", function() {
+$(".list-group").on("blur", "input[type='text']", function () {
   // get current text
   var date = $(this).val().trim();
 
@@ -125,7 +125,7 @@ $(".list-group").on("blur", "input[type='text']", function() {
 })
 
 // save button in modal was clicked
-$("#task-form-modal .btn-primary").click(function() {
+$("#task-form-modal .btn-primary").click(function () {
   // get form values
   var taskText = $("#modalTaskDescription").val();
   var taskDate = $("#modalDueDate").val();
@@ -146,8 +146,33 @@ $("#task-form-modal .btn-primary").click(function() {
   }
 });
 
+$(".card .list-group").sortable({
+  connectWith: $(".card .list-group"),
+  scroll: false,
+  tolerance: "pointer",
+  helper: "clone",
+  activate: function (event) {
+    console.log("activate", this);
+  },
+  deactivate: function (event) {
+    console.log("deactivate", this);
+  },
+  over: function (event) {
+    console.log("over", event.target);
+  },
+  out: function (event) {
+    console.log("out", event.target);
+  },
+  update: function (event) {
+    // loop over current set of children in sortable list
+    $(this).children().each(function () {
+      console.log($(this));
+    });
+  }
+})
+
 // remove all tasks
-$("#remove-tasks").on("click", function() {
+$("#remove-tasks").on("click", function () {
   for (var key in tasks) {
     tasks[key].length = 0;
     $("#list-" + key).empty();
@@ -157,5 +182,3 @@ $("#remove-tasks").on("click", function() {
 
 // load tasks for the first time
 loadTasks();
-
-
