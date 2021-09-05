@@ -164,6 +164,9 @@ $(".card .list-group").sortable({
     console.log("out", event.target);
   },
   update: function (event) {
+    // array to store the task data in
+    var tempArr = [];
+
     // loop over current set of children in sortable list
     $(this).children().each(function () {
       var text = $(this)
@@ -176,8 +179,14 @@ $(".card .list-group").sortable({
         .text()
         .trim();
 
-      console.log(text, date);
+      // add task data to the temp array as an object
+      tempArr.push({
+        text: text,
+        date: date
+      });
     });
+
+    console.log(tempArr);
   }
 })
 
