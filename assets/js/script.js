@@ -100,7 +100,11 @@ $(".list-group").on("click", "span", function () {
 
   // enable jquery ui datepicker
   dateInput.datepicker({
-    minDate: 1
+    minDate: 1,
+    onClose: function () {
+      // wehn calendar is closed, force a change event on the dateInput
+      $(this).trigger("change")
+    }
   })
 
   // automatically focus on new element
