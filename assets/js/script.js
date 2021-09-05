@@ -197,6 +197,8 @@ $(".card .list-group").sortable({
   }
 })
 
+$("#modalDueDate").datepicker();
+
 // trash
 $("#trash").droppable({
   accept: ".card .list-group-item",
