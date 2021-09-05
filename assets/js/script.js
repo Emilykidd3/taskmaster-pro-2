@@ -98,6 +98,11 @@ $(".list-group").on("click", "span", function () {
   // swap out elements
   $(this).replaceWith(dateInput);
 
+  // enable jquery ui datepicker
+  dateInput.datepicker({
+    minDate: 1
+  })
+
   // automatically focus on new element
   dateInput.trigger("focus");
 });
@@ -197,7 +202,9 @@ $(".card .list-group").sortable({
   }
 })
 
-$("#modalDueDate").datepicker();
+$("#modalDueDate").datepicker({
+  minDate: 1
+});
 
 // trash
 $("#trash").droppable({
