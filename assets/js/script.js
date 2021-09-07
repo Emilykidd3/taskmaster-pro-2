@@ -31,6 +31,11 @@ var loadTasks = function () {
     };
   }
 
+  var auditTask = function (taskEl) {
+    // to ensure element is getting to the function
+    console.log(taskEl);
+  };
+
   // loop over object properties
   $.each(tasks, function (list, arr) {
     // then loop over sub-array
