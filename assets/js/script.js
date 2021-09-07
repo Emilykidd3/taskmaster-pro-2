@@ -33,11 +33,6 @@ var loadTasks = function () {
     };
   }
 
-  var auditTask = function (taskEl) {
-    // to ensure element is getting to the function
-    console.log(taskEl);
-  };
-
   // loop over object properties
   $.each(tasks, function (list, arr) {
     // then loop over sub-array
@@ -45,6 +40,18 @@ var loadTasks = function () {
       createTask(task.text, task.date, list);
     });
   });
+};
+
+var auditTask = function (taskEl) {
+  // get date from task element
+  var date = $(taskEl).find("span").text().trim();
+  // ensure it worked
+  console.log(date);
+
+  // convert to moment object at 5:00pm
+  var time = moment(date, "L").set("hour", 17);
+  // this should print out an object for the value of the date variable, but at 5:00pm of that date
+  console.log(time);
 };
 
 var saveTasks = function () {
