@@ -134,7 +134,7 @@ $(".list-group").on("click", "span", function () {
 // value of the due date was changed
 $(".list-group").on("change", "input[type='text']", function () {
   // get current text
-  var date = $(this).val().trim();
+  var date = $(this).val();
 
   // get the parent uls id attribute
   var status = $(this).closest(".list-group").attr("id").replace("list-", "");
@@ -151,6 +151,9 @@ $(".list-group").on("change", "input[type='text']", function () {
 
   // replace input with span element
   $(this).replaceWith(taskSpan);
+
+  // pass task's li element into audittask function to check new due date
+  auditTask($(taskSpan).closest(".list-group-item"));
 })
 
 // save button in modal was clicked
