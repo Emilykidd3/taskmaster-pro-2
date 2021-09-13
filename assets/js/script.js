@@ -184,7 +184,7 @@ $(".card .list-group").sortable({
   tolerance: "pointer",
   helper: "clone",
   activate: function (event) {
-    console.log("activate", this);
+    $(this).addClass("dropover");
   },
   deactivate: function (event) {
     console.log("deactivate", this);
