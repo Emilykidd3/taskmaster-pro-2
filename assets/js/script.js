@@ -190,10 +190,10 @@ $(".card .list-group").sortable({
     $(this).removeClass("dropever");
   },
   over: function (event) {
-    console.log("over", event.target);
+    $(event.target).addClass("dropover-activity");
   },
   out: function (event) {
-    console.log("out", event.target);
+    $(event.target).removeClass("dropover-active");
   },
   update: function (event) {
     // array to store the task data in
