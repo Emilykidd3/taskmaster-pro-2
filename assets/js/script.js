@@ -187,10 +187,10 @@ $(".card .list-group").sortable({
     $(this).addClass("dropover");
   },
   deactivate: function (event) {
-    $(this).removeClass("dropever");
+    $(this).removeClass("dropover");
   },
   over: function (event) {
-    $(event.target).addClass("dropover-activity");
+    $(event.target).addClass("dropover-active");
   },
   out: function (event) {
     $(event.target).removeClass("dropover-active");
