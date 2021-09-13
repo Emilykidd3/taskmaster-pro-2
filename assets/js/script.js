@@ -187,7 +187,7 @@ $(".card .list-group").sortable({
     $(this).addClass("dropover");
   },
   deactivate: function (event) {
-    console.log("deactivate", this);
+    $(this).removeClass("dropever");
   },
   over: function (event) {
     console.log("over", event.target);
