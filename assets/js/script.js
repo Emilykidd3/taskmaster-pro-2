@@ -185,9 +185,11 @@ $(".card .list-group").sortable({
   helper: "clone",
   activate: function (event) {
     $(this).addClass("dropover");
+    $(".bottom-trash").addClass("bottom-trash-drag");
   },
   deactivate: function (event) {
     $(this).removeClass("dropover");
+    $(".bottom-trash").removeClass("bottom-trash-drag");
   },
   over: function (event) {
     $(event.target).addClass("dropover-active");
