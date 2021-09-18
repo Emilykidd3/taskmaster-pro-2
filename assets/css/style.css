@@ -57,3 +57,7 @@ h6 {
   background-size: 1px 100px;
   background-position: 0 -10px;
 }
+
+.btn-add:hover, .btn-save:hover, .btn-close:hover, .btn-delete:hover {
+  background-position: 1px -50px;
+}
